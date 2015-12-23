@@ -1,0 +1,19 @@
+var express = require('express');
+var favicon = require('serve-favicon');
+
+var app = express();
+
+app.use(favicon(__dirname + '/assets/favicon.png'));
+
+app.use(express.static('assets'));
+
+// Routes - TODO implement specific endpoint rerouting properly
+app.get('/*', function (req, res) {
+    res.sendFile(__dirname +'/assets/index.html');
+});
+
+app.listen(4444, function () {
+    console.log('Server Listening on port:', 4444);
+});
+
+
