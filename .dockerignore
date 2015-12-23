@@ -1,0 +1,8 @@
+*.iml
+.gradle
+build/
+build.gradle
+
+node_modules
+
+public
