@@ -1,6 +1,15 @@
 
-language: javascript
+language: node_js
 
+before_script:
+  - npm install -g gulp
+
+script: gulp
+
+node_js:
+  - "4.1"
+  - "stable"
 
 notifications:
   email: false
+
