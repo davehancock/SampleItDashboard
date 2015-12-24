@@ -1,6 +1,12 @@
 
+.idea
+.git
 node_modules
 public
+SampleItDashboard.iml
 
-.idea
-
+gulpfile.js
+package.json
+README.md
+.travis.yml
+.gitignore
