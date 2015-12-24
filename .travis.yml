@@ -1,3 +1,6 @@
+sudo: required
+services:
+  - docker
 
 language: node_js
 
@@ -9,6 +12,12 @@ script: gulp
 node_js:
   - "4.1"
   - "stable"
+
+after_success:
+# TODO Obsficate
+- docker build -t daves125125/sampleit-dashboard .
+- docker login -e="daves125125@gmail.com" -u="daves125125" -p="Docker123"
+- docker push daves125125/sampleit-dashboard
 
 notifications:
   email: false

@@ -13,6 +13,7 @@ WORKDIR /app/dist
 # Install app dependencies
 RUN npm install
 
+# FIXME This does nothing as the resources are already copied across
 # build static assets using gulp and copy across to assets
 RUN npm i gulp -g
 RUN gulp build

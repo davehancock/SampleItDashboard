@@ -1,15 +1,15 @@
 app.service('CpuService', function ($http) {
 
     this.retrieveCpuMetrics = function () {
-        return $http.get('http://localhost:3333/cpus');
+        return $http.get('http://djh.tech:3333/cpus');
     };
 
     this.retrieveOverlayCpuMetrics = function () {
-        return $http.get('http://localhost:3333/cpu/overlay');
+        return $http.get('http://djh.tech:3333/cpu/overlay');
     };
 
     this.retrieveOverlayCpuMetrics = function () {
-        return $http.get('http://localhost:3333/cpu/overlay/');
+        return $http.get('http://djh.tech:3333/cpu/overlay/');
     };
 
     this.populateLabels = function () {
