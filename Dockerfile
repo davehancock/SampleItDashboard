@@ -10,7 +10,5 @@ RUN yum install -y nodejs npm
 COPY . /app/dist/
 WORKDIR /app/dist
 
-RUN ls -lta
-
 EXPOSE  4444
 CMD ["node", "/app/dist/server.js"]
