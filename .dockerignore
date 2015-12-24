@@ -6,7 +6,6 @@ public
 SampleItDashboard.iml
 
 gulpfile.js
-package.json
 README.md
 .travis.yml
 .gitignore

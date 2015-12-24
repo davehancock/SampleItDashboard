@@ -8,10 +8,9 @@ RUN yum install -y nodejs npm
 
 # Copy required assets to container
 COPY . /app/dist/
+WORKDIR /app/dist
 
 RUN npm install
-
-WORKDIR /app/dist
 
 EXPOSE  4444
 CMD ["node", "/app/dist/server.js"]
