@@ -10,8 +10,6 @@ var nodemon = require('gulp-nodemon');
 // Set the default task to be "build" for now.
 gulp.task('default', ['build']);
 
-gulp.task('deploy', ['build', 'dev:server']);
-
 gulp.task('build', ['libs', 'images', 'js', 'html', 'css']);
 
 gulp.task('dev', ['libs', 'images', 'watch:js', 'watch:html', 'watch:css', 'dev:server']);

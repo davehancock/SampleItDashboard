@@ -7,7 +7,6 @@ app.use(favicon(__dirname + '/assets/favicon.png'));
 
 app.use(express.static('assets'));
 
-// Routes - TODO implement specific endpoint rerouting properly
 app.get('/*', function (req, res) {
     res.sendFile(__dirname +'/assets/index.html');
 });
