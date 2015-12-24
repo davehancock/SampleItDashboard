@@ -7,8 +7,8 @@ RUN yum install -y epel-release
 RUN yum install -y nodejs npm
 
 # Copy only required assets to container
+COPY assets /app/dist/assets
 COPY server.js /app/dist
-COPY assets /app/dist
 WORKDIR /app/dist
 
 EXPOSE  4444
