@@ -6,7 +6,7 @@ app.controller('CpuCtrl', function ($scope, $timeout, CpuService, HostService) {
 
     var cpuMetricPoller = function () {
         refreshOverlayChart();
-        $timeout(cpuMetricPoller, 3000);
+        $timeout(cpuMetricPoller, 5000);
     };
 
     var createOverlayChart = function () {

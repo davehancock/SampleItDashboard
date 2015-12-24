@@ -1,7 +1,7 @@
-app.service('HostService', function ($http) {
+app.service('HostService', function ($http, hostname, port) {
 
-    this.retrieveHosts = function(){
-        return $http.get('http://djh.tech:3333/hosts');
+    this.retrieveHosts = function () {
+        return $http.get(hostname + ':' + port + '/hosts');
     }
 
 });

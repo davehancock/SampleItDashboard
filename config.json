@@ -1,0 +1,10 @@
+{
+  "production": {
+    "hostname": "http://djh.tech",
+    "port": "3333"
+  },
+  "development": {
+    "hostname": "http://localhost",
+    "port": "3333"
+  }
+}
