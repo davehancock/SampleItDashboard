@@ -8,6 +8,10 @@ app.config(function ($routeProvider, $locationProvider, ChartJsProvider) {
         .when('/cpu', {
             controller: 'CpuCtrl',
             templateUrl: './cpu/cpu.html'
+        })
+        .when('/memory', {
+            controller: 'MemoryCtrl',
+            templateUrl: './memory/memory.html'
         });
 
     $locationProvider.html5Mode(true);

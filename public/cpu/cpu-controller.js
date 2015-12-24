@@ -23,7 +23,6 @@ app.controller('CpuCtrl', function ($scope, $timeout, CpuService, HostService) {
         CpuService.retrieveOverlayCpuMetrics().success(function (data) {
             $scope.cpuDataSeries = data;
         });
-
     };
 
     // Kick off the poller

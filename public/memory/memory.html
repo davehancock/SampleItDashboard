@@ -1,0 +1,21 @@
+<div class="container">
+
+    <div class="page-header">
+        <h1>Memory Sampling
+            <p>
+                <small>
+                    This section details metrics of the Memory usage for each of your computers.
+                </small>
+            </p>
+        </h1>
+    </div>
+
+    <uib-tabset class="host-tabs">
+        <uib-tab ng-repeat="tab in hosts" heading="{{hosts[$index]}}">
+        </uib-tab>
+    </uib-tabset>
+
+    <div class="container">
+    </div>
+
+</div>
