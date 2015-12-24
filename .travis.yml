@@ -13,9 +13,8 @@ node_js:
   - "stable"
 
 after_success:
-# TODO Obsficate
 - docker build -t daves125125/sampleit-dashboard .
-- docker login -e="daves125125@gmail.com" -u="daves125125" -p="Docker123"
+- docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 - docker push daves125125/sampleit-dashboard
 
 notifications:
