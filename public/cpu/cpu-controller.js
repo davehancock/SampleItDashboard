@@ -6,36 +6,50 @@ app.controller('CpuCtrl', function ($scope, $timeout, CpuService, HostService) {
         $scope.hosts = data;
         sampleHost = data[0];
 
-        createOverlayChart();
+        initialiseCPUChartData();
     });
 
     $scope.activeHost = function (tab) {
         sampleHost = tab;
-        //refreshOverlayChart();
+        refreshCPUChartData();
     };
 
-    var cpuMetricPoller = function () {
-        refreshOverlayChart();
-        $timeout(cpuMetricPoller, 5000);
-    };
-
-    // This needs to be called on the promise for hosts
-    var createOverlayChart = function () {
+    var initialiseCPUChartData = function () {
 
         CpuService.retrieveCpuMetrics(sampleHost).success(function (data) {
             $scope.labels = CpuService.populateLabels(data);
             $scope.series = CpuService.populateSeries(data.length);
             $scope.cpuDataSeries = data;
+            $scope.cpuIsolationDataSeries = transformToCPUIsolationData(data);
 
+            // Start the poller after cpu data is initialised
             cpuMetricPoller();
         });
     };
 
-    var refreshOverlayChart = function () {
+    // TODO Have a stop / pause / restart function for this.
+    var cpuMetricPoller = function () {
+        refreshCPUChartData();
+        $timeout(cpuMetricPoller, 5000);
+    };
+
+    var refreshCPUChartData = function () {
 
         CpuService.retrieveCpuMetrics(sampleHost).success(function (data) {
             $scope.cpuDataSeries = data;
+            $scope.cpuIsolationDataSeries = transformToCPUIsolationData(data);
         });
+    };
+
+    var transformToCPUIsolationData = function (data) {
+
+        var isolationSeries = [];
+        for (var i = 0; i < data.length; i++) {
+            var seriesArr = [data[i]];
+            isolationSeries.push(seriesArr)
+        }
+
+        return isolationSeries;
     };
 
 });

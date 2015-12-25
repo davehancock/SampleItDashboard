@@ -13,7 +13,6 @@ app.service('CpuService', function ($http, hostname, port) {
         }
 
         var labelArr = [];
-
         for (var i = 0; i < numberOfItems; i++) {
             labelArr.push(i + 1);
         }
@@ -24,7 +23,6 @@ app.service('CpuService', function ($http, hostname, port) {
     this.populateSeries = function (numberOfCores) {
 
         var seriesArr = [];
-
         for (var i = 0; i < numberOfCores; i++) {
             seriesArr.push("Core " + (i + 1))
         }
