@@ -12,7 +12,7 @@
     </div>
 
     <uib-tabset class="host-tabs">
-        <uib-tab ng-repeat="tab in hosts" heading="{{hosts[$index]}}">
+        <uib-tab ng-repeat="tab in hosts" heading="{{hosts[$index]}}" select="activeHost(tab)" >
         </uib-tab>
     </uib-tabset>
 
