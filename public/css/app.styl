@@ -4,7 +4,7 @@ h1
 
 // Nav Bar Header styling
 .navbar-default
-  background-color: #EFEFEF
+  background-color: #F4F6F7
   border-top: none
   border-left: none
   border-right: none
@@ -13,11 +13,15 @@ h1
   border-width: 1px
   border-radius: 0
 
-.navbar-default
-  color: #900002
+@media (max-width: 767px) {
 
-.navbar-default:hover
-  color: #051890
+  .visible-xs.collapse.in {
+    display: block!important;
+  }
+  .visible-xs.collapse {
+    display: none!important;
+  }
+}
 
 .jumbotron
   background-color: #FFE3B8
@@ -40,9 +44,6 @@ h1
 
 // CPU page styling
 .cpu-canvas
-  margin-left: auto
-  margin-right: auto
-  display: block
   width: 100%
   height: 100%
 
@@ -76,5 +77,5 @@ body
   bottom: 0
   width: 100%
   height: 60px
-  background-color: #A2A2A2
+  background-color: #B5B5B5
   font-style: italic

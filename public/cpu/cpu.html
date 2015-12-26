@@ -17,15 +17,17 @@
     </uib-tabset>
 
     <div class="container">
-
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">CPU Core Overlay View</h3>
             </div>
             <div class="panel-body">
-                <canvas class="chart chart-line cpu-canvas"
-                        chart-data="cpuDataSeries" chart-labels="labels" chart-series="series" chart-click="onClick">
-                </canvas>
+                <div class="chart-container">
+                    <canvas class="chart chart-line cpu-canvas"
+                            chart-data="cpuDataSeries" chart-labels="labels" chart-series="series"
+                            chart-click="onClick" chart-legend="true">
+                    </canvas>
+                </div>
             </div>
         </div>
 
@@ -34,12 +36,10 @@
                 <h3 class="panel-title">CPU Core Isolation View</h3>
             </div>
             <div class="panel-body">
-                <div class="cpu-overlay-canvas">
-                    <div class="cpu-isolation-block" ng-repeat="core in series">
-                        <canvas class="chart chart-line cpu-canvas"
-                                chart-data="cpuIsolationDataSeries[$index]" chart-labels="labels" chart-series="series">
-                        </canvas>
-                    </div>
+                <div class="cpu-isolation-block" ng-repeat="core in series">
+                    <canvas class="chart chart-line cpu-canvas"
+                            chart-data="cpuIsolationDataSeries[$index]" chart-labels="labels" chart-series="series">
+                    </canvas>
                 </div>
             </div>
         </div>
@@ -47,7 +47,3 @@
     </div>
 
 </div>
-
-
-
-
