@@ -1,4 +1,4 @@
-app.controller('HomeCtrl', function ($scope, HostService) {
+app.controller('HomeCtrl', function ($scope) {
 
 
 

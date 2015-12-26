@@ -1,7 +1,7 @@
 app.service('CpuService', function ($http, hostname, port) {
 
-    this.retrieveCpuMetrics = function (sampleHost) {
-        return $http.get(hostname + ':' + port + '/cpu/samples/' + sampleHost + '/');
+    this.retrieveCpuMetrics = function (sampleHost, numberOfPoints) {
+        return $http.get(hostname + ':' + port + '/cpu/samples/' + sampleHost + '/' + numberOfPoints + '/');
     };
 
     this.populateLabels = function (data) {

@@ -49,6 +49,7 @@ gulp.task('config', function () {
 });
 
 gulp.task('libs', function () {
+    gulp.src(['static_modules/**/*.*']).pipe(gulp.dest('assets/libs'));
     gulp.src(gnf(), {base: './node_modules'}).pipe(gulp.dest('assets/libs'));
 });
 

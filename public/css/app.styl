@@ -13,8 +13,8 @@ h1
   border-width: 1px
   border-radius: 0
 
+// Used for collapsing nav bar on resize
 @media (max-width: 767px) {
-
   .visible-xs.collapse.in {
     display: block!important;
   }
@@ -52,6 +52,12 @@ h1
   position: relative
   width: 50%
 
+.cpu-slider-group
+  margin-right: 20px
+
+.cpu-slider
+  height: 100%
+
 .host-tabs
   margin-top: 20px
   margin-bottom: 20px
@@ -79,3 +85,7 @@ body
   height: 60px
   background-color: #B5B5B5
   font-style: italic
+
+:focus{
+  outline: none !important;
+}
