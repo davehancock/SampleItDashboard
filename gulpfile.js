@@ -23,7 +23,7 @@ gulp.task('set-prod', function () {
 });
 
 gulp.task('set-dev', function () {
-    return process.env.NODE_ENV = 'production';
+    return process.env.NODE_ENV = 'development';
 });
 
 gulp.task('js', ['config'], function () {

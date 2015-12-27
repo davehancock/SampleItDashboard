@@ -65,4 +65,8 @@ app.controller('CpuCtrl', function ($scope, $timeout, CpuService, HostService) {
         $timeout(cpuMetricPoller, ($scope.timeoutSlider.value * 1000));
     };
 
+    // TODO Bug on window resize while panel closed
+    // use chart redraw(). on window resize event
+
+
 });
