@@ -1,6 +1,11 @@
+theme-color = #2E6492
 
-h1
-  color: #2E6492
+h2
+  color: theme-color
+
+// Prevents page from shifting to the left when scroll bar pops
+html
+  overflow-y: scroll
 
 // Nav Bar Header styling
 .navbar-default
@@ -14,35 +19,49 @@ h1
   border-radius: 0
 
 // Used for collapsing nav bar on resize
-@media (max-width: 767px) {
-  .visible-xs.collapse.in {
-    display: block!important;
-  }
-  .visible-xs.collapse {
-    display: none!important;
-  }
-}
+@media (max-width: 767px)
+
+  .visible-xs.collapse.in
+    display: block !important
+
+  .visible-xs.collapse
+    display: none !important
 
 .jumbotron
-  background-color: #FFE3B8
+  background-color: #8CA8D4
 
 // Button color override
+button-border = #466c8b
+
 .btn-primary
   color: #fff
-  background-color: #E4841E
-  border-color: #403507
+  background-color: #57ace4
+  border-color: button-border
 
 .btn-primary:active
   color: #fff
-  background-color: #905928
-  border-color: #403507
+  background-color: theme-color
+  border-color: button-border
 
 .btn-primary:hover
   color: #fff
-  background-color: #905928
-  border-color: #403507
+  background-color: theme-color
+  border-color: button-border
 
 // CPU page styling
+.host-tabs
+  margin-top: 20px
+  margin-bottom: 20px
+
+.nav-tabs
+  border-bottom: 1px solid #ddd;
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover
+  color: theme-color
+
+a
+  color: theme-color
+
 .cpu-canvas
   width: 100%
   height: 100%
@@ -52,15 +71,12 @@ h1
   position: relative
   width: 50%
 
-.cpu-slider-group
-  margin-right: 20px
+// Slider style overrides
+rzslider .rz-pointer
+  background-color: theme-color
 
-.cpu-slider
-  height: 100%
-
-.host-tabs
-  margin-top: 20px
-  margin-bottom: 20px
+rzslider .rz-pointer.rz-active:after
+  background-color: #FFFFFF
 
 // Footer Styling
 html
@@ -72,7 +88,7 @@ body
 
 .footer-content
   margin-top: 20px;
-  text-align: right;
+  text-align: right
 
 .footer
   border-top: solid
@@ -86,6 +102,6 @@ body
   background-color: #B5B5B5
   font-style: italic
 
-:focus{
-  outline: none !important;
-}
+// Override for chrome focus blue halo on AngularJS form components
+:focus
+  outline: none !important

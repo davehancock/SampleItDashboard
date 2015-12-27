@@ -1,14 +1,27 @@
 <div class="container">
 
-    <div class="page-header">
-        <h1>CPU Sampling
-            <p>
-                <small>
-                    This section details metrics of the CPU usage for each of your computers. The metrics here are
-                    broken down to the level of each individual core.
-                </small>
-            </p>
-        </h1>
+    <div class="container">
+        <h2>CPU Sampling
+            <small>
+                <br>
+                This section details metrics of the CPU usage for each of your computers. The metrics here are
+                broken down to the level of each individual core.
+            </small>
+        </h2>
+        <hr>
+    </div>
+
+    <div class="container">
+        Refresh Rate (Seconds)
+        <rzslider rz-slider-model="timeoutSlider.value"
+                  rz-slider-options="timeoutSlider.options">
+        </rzslider>
+        <hr>
+        Number of Historical Data Points (Time in Seconds)
+        <rzslider rz-slider-model="numberOfPointsSlider.value"
+                  rz-slider-options="numberOfPointsSlider.options">
+        </rzslider>
+        <hr>
     </div>
 
     <uib-tabset class="host-tabs">
@@ -17,51 +30,35 @@
     </uib-tabset>
 
     <div class="container">
+        <uib-accordion close-others="false">
+            <uib-accordion-group is-open="overlay.open" ng-init="overlay.open=true">
+                <uib-accordion-heading>
+                    CPU Core Overlay View
+                    <i class="pull-right glyphicon"
+                       ng-class="{'glyphicon-chevron-down': overlay.open, 'glyphicon-chevron-right': !overlay.open}"></i>
+                </uib-accordion-heading>
+                <div class="chart-container">
+                    <canvas class="chart chart-line cpu-canvas"
+                            chart-data="cpuDataSeries" chart-labels="labels" chart-series="series"
+                            chart-click="onClick" chart-legend="true">
+                    </canvas>
+                </div>
+            </uib-accordion-group>
 
-        <div class="container">
-            Refresh Rate (Seconds)
-            <rzslider rz-slider-model="timeoutSlider.value"
-                      rz-slider-options="timeoutSlider.options">
-            </rzslider>
-            <hr>
-            Number of Historical Data Points (Time in Seconds)
-            <rzslider rz-slider-model="numberOfPointsSlider.value"
-                      rz-slider-options="numberOfPointsSlider.options">
-            </rzslider>
-            <hr>
-        </div>
-
-        <div class="container">
-            <uib-accordion close-others="false">
-                <uib-accordion-group is-open="overlay.open" ng-init="overlay.open=true">
-                    <uib-accordion-heading>
-                        CPU Core Overlay View
-                        <i class="pull-right glyphicon"
-                           ng-class="{'glyphicon-chevron-down': overlay.open, 'glyphicon-chevron-right': !overlay.open}"></i>
-                    </uib-accordion-heading>
-                    <div class="chart-container">
-                        <canvas class="chart chart-line cpu-canvas"
-                                chart-data="cpuDataSeries" chart-labels="labels" chart-series="series"
-                                chart-click="onClick" chart-legend="true">
-                        </canvas>
-                    </div>
-                </uib-accordion-group>
-
-                <uib-accordion-group is-open="isolation.open">
-                    <uib-accordion-heading>
-                        CPU Core Isolation View
-                        <i class="pull-right glyphicon"
-                           ng-class="{'glyphicon-chevron-down': isolation.open, 'glyphicon-chevron-right': !isolation.open}"></i>
-                    </uib-accordion-heading>
-                    <div class="cpu-isolation-block" ng-repeat="core in series">
-                        <canvas class="chart chart-line cpu-canvas"
-                                chart-data="cpuIsolationDataSeries[$index]" chart-labels="labels"
-                                chart-series="series">
-                        </canvas>
-                    </div>
-                </uib-accordion-group>
-            </uib-accordion>
-        </div>
+            <uib-accordion-group is-open="isolation.open">
+                <uib-accordion-heading>
+                    CPU Core Isolation View
+                    <i class="pull-right glyphicon"
+                       ng-class="{'glyphicon-chevron-down': isolation.open, 'glyphicon-chevron-right': !isolation.open}"></i>
+                </uib-accordion-heading>
+                <div class="cpu-isolation-block" ng-repeat="core in series">
+                    <canvas class="chart chart-line cpu-canvas"
+                            chart-data="cpuIsolationDataSeries[$index]" chart-labels="labels"
+                            chart-series="series">
+                    </canvas>
+                </div>
+            </uib-accordion-group>
+        </uib-accordion>
     </div>
 
 </div>
