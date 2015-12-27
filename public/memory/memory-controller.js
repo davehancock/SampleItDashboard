@@ -5,11 +5,14 @@ app.controller('MemoryCtrl', function ($scope, $timeout, MemoryService, HostServ
     HostService.retrieveHosts().success(function (data) {
         $scope.hosts = data;
         sampleHost = data[0];
-        refreshCPUChartData();
+        refreshMemoryChartData();
+
+        memoryMetricPoller();
     });
 
     $scope.activeHost = function (tab) {
         sampleHost = tab;
+        refreshMemoryChartData();
     };
 
     $scope.timeoutSlider = {
@@ -24,19 +27,21 @@ app.controller('MemoryCtrl', function ($scope, $timeout, MemoryService, HostServ
         }
     };
 
-    var refreshCPUChartData = function () {
+    var refreshMemoryChartData = function () {
 
-        MemoryService.retrieveCpuMetrics(sampleHost).success(function (data) {
+        MemoryService.retrieveMemoryMetrics(sampleHost).success(function (data) {
             $scope.totalMemoryAvailable = data.totalMemory;
-            $scope.labels = MemoryService.populateLabels();
+            $scope.labels = ['Allocated Memory (Bytes)', 'Available Memory (Bytes)'];
             $scope.memoryDataSeries = [(data.totalMemory - data.availableMemory), data.availableMemory];
-
-            $timeout(refreshCPUChartData, ($scope.timeoutSlider.value * 1000));
         });
     };
 
-});
+    var memoryMetricPoller = function () {
+        refreshMemoryChartData();
+        $timeout(memoryMetricPoller, ($scope.timeoutSlider.value * 1000));
+    };
 
+});
 
 
 

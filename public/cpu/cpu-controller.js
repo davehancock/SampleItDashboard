@@ -6,10 +6,13 @@ app.controller('CpuCtrl', function ($scope, $timeout, CpuService, HostService) {
         $scope.hosts = data;
         sampleHost = data[0];
         refreshCPUChartData();
+
+        cpuMetricPoller();
     });
 
     $scope.activeHost = function (tab) {
         sampleHost = tab;
+        refreshCPUChartData();
     };
 
     $scope.timeoutSlider = {
@@ -40,13 +43,10 @@ app.controller('CpuCtrl', function ($scope, $timeout, CpuService, HostService) {
     var refreshCPUChartData = function () {
 
         CpuService.retrieveCpuMetrics(sampleHost, $scope.numberOfPointsSlider.value).success(function (data) {
-
             $scope.series = CpuService.populateSeries(data.length);
             $scope.labels = CpuService.populateLabels(data);
             $scope.cpuDataSeries = data;
             $scope.cpuIsolationDataSeries = transformToCPUIsolationData(data);
-
-            $timeout(refreshCPUChartData, ($scope.timeoutSlider.value * 1000));
         });
     };
 
@@ -58,6 +58,11 @@ app.controller('CpuCtrl', function ($scope, $timeout, CpuService, HostService) {
         }
 
         return isolationSeries;
+    };
+
+    var cpuMetricPoller = function () {
+        refreshCPUChartData();
+        $timeout(cpuMetricPoller, ($scope.timeoutSlider.value * 1000));
     };
 
 });

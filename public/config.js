@@ -1,3 +1,3 @@
 angular.module('sampleit.config', [])
-.constant('hostname', "http://localhost")
+.constant('hostname', "http://djh.tech")
 .constant('port', "3333");
