@@ -10,12 +10,35 @@
         <hr>
     </div>
 
+    <div class="container">
+        Refresh Rate (Seconds)
+        <rzslider rz-slider-model="timeoutSlider.value"
+                  rz-slider-options="timeoutSlider.options">
+        </rzslider>
+        <hr>
+    </div>
+
     <uib-tabset class="host-tabs">
         <uib-tab ng-repeat="tab in hosts" heading="{{hosts[$index]}}">
         </uib-tab>
     </uib-tabset>
 
     <div class="container">
+        <uib-accordion close-others="false">
+            <uib-accordion-group is-open="memory.open" ng-init="memory.open=true">
+                <uib-accordion-heading>
+                    Memory Usage View - <small>(Total Available Memory: {{totalMemoryAvailable}})</small>
+                    <i class="pull-right glyphicon"
+                       ng-class="{'glyphicon-chevron-down': memory.open, 'glyphicon-chevron-right': !memory.open}"></i>
+                </uib-accordion-heading>
+                <div class="chart-container">
+                    <canvas class="chart chart-doughnut"
+                            chart-data="memoryDataSeries" chart-labels="labels" chart-legend="true">
+                    </canvas>
+                </div>
+            </uib-accordion-group>
+        </uib-accordion>
+
     </div>
 
 </div>
