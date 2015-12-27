@@ -5,15 +5,11 @@ app.controller('CpuCtrl', function ($scope, $timeout, CpuService, HostService) {
     HostService.retrieveHosts().success(function (data) {
         $scope.hosts = data;
         sampleHost = data[0];
-        initialiseCPUChartData();
-
-        // Start the poller after cpu data is initialised
-        cpuMetricPoller();
+        refreshCPUChartData();
     });
 
     $scope.activeHost = function (tab) {
         sampleHost = tab;
-        initialiseCPUChartData();
     };
 
     $scope.timeoutSlider = {
@@ -41,42 +37,27 @@ app.controller('CpuCtrl', function ($scope, $timeout, CpuService, HostService) {
         }
     };
 
-    var initialiseCPUChartData = function () {
-
-        CpuService.retrieveCpuMetrics(sampleHost, $scope.numberOfPointsSlider.value).success(function (data) {
-            $scope.series = CpuService.populateSeries(data.length);
-            exposeChartValues(data);
-        });
-    };
-
     var refreshCPUChartData = function () {
 
         CpuService.retrieveCpuMetrics(sampleHost, $scope.numberOfPointsSlider.value).success(function (data) {
-            exposeChartValues(data);
-        });
-    };
 
-    var exposeChartValues = function (data) {
-        $scope.labels = CpuService.populateLabels(data);
-        $scope.cpuDataSeries = data;
-        $scope.cpuIsolationDataSeries = transformToCPUIsolationData(data);
+            $scope.series = CpuService.populateSeries(data.length);
+            $scope.labels = CpuService.populateLabels(data);
+            $scope.cpuDataSeries = data;
+            $scope.cpuIsolationDataSeries = transformToCPUIsolationData(data);
+
+            $timeout(refreshCPUChartData, ($scope.timeoutSlider.value * 1000));
+        });
     };
 
     var transformToCPUIsolationData = function (data) {
 
         var isolationSeries = [];
         for (var i = 0; i < data.length; i++) {
-            var seriesArr = [data[i]];
-            isolationSeries.push(seriesArr)
+            isolationSeries.push([data[i]])
         }
 
         return isolationSeries;
-    };
-
-    // TODO Have a stop / pause / restart function for this.
-    var cpuMetricPoller = function () {
-        refreshCPUChartData();
-        $timeout(cpuMetricPoller, ($scope.timeoutSlider.value * 1000));
     };
 
 });

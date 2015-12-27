@@ -5,15 +5,11 @@ app.controller('MemoryCtrl', function ($scope, $timeout, MemoryService, HostServ
     HostService.retrieveHosts().success(function (data) {
         $scope.hosts = data;
         sampleHost = data[0];
-        initialiseMemoryChartData();
-
-        // Start the poller after cpu data is initialised
-        memoryMetricPoller();
+        refreshCPUChartData();
     });
 
     $scope.activeHost = function (tab) {
         sampleHost = tab;
-        initialiseMemoryChartData();
     };
 
     $scope.timeoutSlider = {
@@ -28,32 +24,15 @@ app.controller('MemoryCtrl', function ($scope, $timeout, MemoryService, HostServ
         }
     };
 
-    var initialiseMemoryChartData = function () {
-
-        MemoryService.retrieveCpuMetrics(sampleHost).success(function (data) {
-            $scope.totalMemoryAvailable = data.totalMemory;
-            exposeChartValues(data);
-        });
-    };
-
     var refreshCPUChartData = function () {
 
         MemoryService.retrieveCpuMetrics(sampleHost).success(function (data) {
-            exposeChartValues(data);
+            $scope.totalMemoryAvailable = data.totalMemory;
+            $scope.labels = MemoryService.populateLabels();
+            $scope.memoryDataSeries = [(data.totalMemory - data.availableMemory), data.availableMemory];
+
+            $timeout(refreshCPUChartData, ($scope.timeoutSlider.value * 1000));
         });
-    };
-
-    var exposeChartValues = function (data) {
-        $scope.labels = MemoryService.populateLabels();
-
-        var dataArr = [(data.totalMemory - data.availableMemory), data.availableMemory];
-        $scope.memoryDataSeries = dataArr;
-    };
-
-    // TODO Have a stop / pause / restart function for this.
-    var memoryMetricPoller = function () {
-        refreshCPUChartData();
-        $timeout(memoryMetricPoller, ($scope.timeoutSlider.value * 1000));
     };
 
 });

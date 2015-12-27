@@ -38,7 +38,7 @@
                        ng-class="{'glyphicon-chevron-down': overlay.open, 'glyphicon-chevron-right': !overlay.open}"></i>
                 </uib-accordion-heading>
                 <div class="chart-container">
-                    <canvas class="chart chart-line cpu-canvas"
+                    <canvas class="chart chart-line"
                             chart-data="cpuDataSeries" chart-labels="labels" chart-series="series"
                             chart-legend="true">
                     </canvas>
@@ -52,7 +52,7 @@
                        ng-class="{'glyphicon-chevron-down': isolation.open, 'glyphicon-chevron-right': !isolation.open}"></i>
                 </uib-accordion-heading>
                 <div class="cpu-isolation-block" ng-repeat="core in series">
-                    <canvas class="chart chart-line cpu-canvas"
+                    <canvas class="chart chart-line"
                             chart-data="cpuIsolationDataSeries[$index]" chart-labels="labels"
                             chart-series="series">
                     </canvas>
