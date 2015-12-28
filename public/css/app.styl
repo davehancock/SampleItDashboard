@@ -9,7 +9,7 @@ html
 
 // Nav Bar Header styling
 .navbar-default
-  background-color: #F4F6F7
+  background-color: #136F9E
   border-top: none
   border-left: none
   border-right: none
@@ -17,6 +17,27 @@ html
   border-color: #D4D2D2
   border-width: 1px
   border-radius: 0
+
+// Navbar Toggle
+.navbar-default .navbar-toggle
+  border-color: #136F9E
+
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover
+  background-color: #136F9E
+
+// Navbar Brand
+.navbar-default .navbar-brand
+  color: #FFF
+
+.navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover
+  color: #FFF
+
+// Navbar list items
+.navbar-default .navbar-nav > li > a
+  color: #f1f1f1
+
+.navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover
+  color: #D5D8DE
 
 // Used for collapsing nav bar on resize
 @media (max-width: 767px)
@@ -27,19 +48,34 @@ html
   .visible-xs.collapse
     display: none !important
 
-  .navbar-header
-    border-bottom: 1px solid #ddd;
+  .navbar-default .navbar-toggle .icon-bar
+    background-color: #ebebeb;
 
+  .navbar-header
+    border-bottom: 1px solid #e7e7e7;
 
 .jumbotron
-  background-color: #8CA8D4
+  color: #fff
+  font-family: Montserrat, sans-serif;
+  background-image: url("internals-md.jpeg")
+  background-size: cover
+  height: 100%;
+
+.jumbotron-header
+  background: rgba(31, 39, 41, 0.48)
+  display: inline-block
+  padding-left: 20px
+  padding-right: 20px
+
+.jumbotron-button
+  padding: 25px
 
 // Button color override
-button-border = #466c8b
+button-border = #1f2c3f
 
 .btn-primary
   color: #fff
-  background-color: #57ace4
+  background-color: #136F9E;
   border-color: button-border
 
 .btn-primary:active
@@ -84,6 +120,7 @@ body
 .footer-content
   margin-top: 20px;
   text-align: right
+  color: #ECF3FD
 
 .footer
   border-top: solid
@@ -94,8 +131,8 @@ body
   bottom: 0
   width: 100%
   height: 60px
-  background-color: #B5B5B5
-  font-style: italic
+
+  background-color: #7F8E9C
 
 // Override for chrome focus blue halo on AngularJS form components
 :focus

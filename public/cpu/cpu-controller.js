@@ -67,6 +67,9 @@ app.controller('CpuCtrl', function ($scope, $timeout, CpuService, HostService) {
 
     // TODO Bug on window resize while panel closed
     // use chart redraw(). on window resize event
+    // Resizes & redraws to fill its container element
+    //  myLineChart.resize();
+    // => returns 'this' for chainability
 
 
 });
