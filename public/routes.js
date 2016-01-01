@@ -5,6 +5,10 @@ app.config(function ($routeProvider, $locationProvider) {
             controller: 'HomeCtrl',
             templateUrl: './home/home.html'
         })
+        .when('/metadata', {
+            controller: 'MetadataCtrl',
+            templateUrl: './metadata/metadata.html'
+        })
         .when('/cpu', {
             controller: 'CpuCtrl',
             templateUrl: './cpu/cpu.html'

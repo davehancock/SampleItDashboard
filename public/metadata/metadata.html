@@ -1,0 +1,57 @@
+<!-- TODO containers shouldn't be nested -->
+<div class="container">
+
+    <!-- TODO containers shouldn't be nested -->
+    <div class="container">
+        <h2>Metadata Summary
+            <small>
+                <br>
+                This section details metadata about each of your computers.
+            </small>
+        </h2>
+        <hr>
+    </div>
+
+    <!-- TODO containers shouldn't be nested -->
+    <div class="container">
+
+        <uib-tabset class="host-tabs">
+            <uib-tab ng-repeat="tab in hosts" heading="{{hosts[$index]}}" select="activeHost(tab)">
+            </uib-tab>
+        </uib-tabset>
+
+        <!-- TODO containers shouldn't be nested -->
+        <div class="container">
+            <uib-accordion close-others="false">
+                <uib-accordion-group is-open="metadata.open" ng-init="metadata.open=true">
+                    <uib-accordion-heading>
+                        Metadata View
+                        <i class="pull-right glyphicon"
+                           ng-class="{'glyphicon-chevron-down': memory.open, 'glyphicon-chevron-right': !memory.open}"></i>
+                    </uib-accordion-heading>
+
+                    <!-- TODO Make this generic? Ng-Repeat over hosts or list all based on tabs? -->
+                    <table class="table">
+                        <tr>
+                            <th>Hostname</th>
+                            <td>{{hostname}}</td>
+                        </tr>
+                        <tr>
+                            <th>MAC Address</th>
+                            <td>{{macAddress}}</td>
+                        </tr>
+                        <tr>
+                            <th>Operating System</th>
+                            <td>{{operatingSystem}}</td>
+                        </tr>
+                        <tr>
+                            <th>Origin Public IP Address</th>
+                            <td>{{originPublicIPAddress}}</td>
+                        </tr>
+                    </table>
+
+                </uib-accordion-group>
+            </uib-accordion>
+        </div>
+    </div>
+</div>
