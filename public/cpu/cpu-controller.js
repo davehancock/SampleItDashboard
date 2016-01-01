@@ -40,6 +40,11 @@ app.controller('CpuCtrl', function ($scope, $timeout, CpuService, HostService) {
         }
     };
 
+    //$scope.options = {
+    //    pointDot: false,
+    //    datasetStrokeWidth: 0.5
+    //};
+
     var refreshCPUChartData = function () {
 
         CpuService.retrieveCpuMetrics(sampleHost, $scope.numberOfPointsSlider.value).success(function (data) {

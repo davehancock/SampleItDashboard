@@ -1,5 +1,7 @@
+<!-- TODO containers shouldn't be nested -->
 <div class="container">
 
+    <!-- TODO containers shouldn't be nested -->
     <div class="container">
         <h2>Memory Sampling
             <small>
@@ -10,6 +12,7 @@
         <hr>
     </div>
 
+    <!-- TODO containers shouldn't be nested -->
     <div class="container">
         Refresh Rate (Seconds)
         <rzslider rz-slider-model="timeoutSlider.value"
@@ -19,10 +22,11 @@
     </div>
 
     <uib-tabset class="host-tabs">
-        <uib-tab ng-repeat="tab in hosts" heading="{{hosts[$index]}}">
+        <uib-tab ng-repeat="tab in hosts" heading="{{hosts[$index]}}" select="activeHost(tab)">
         </uib-tab>
     </uib-tabset>
 
+    <!-- TODO containers shouldn't be nested -->
     <div class="container">
         <uib-accordion close-others="false">
             <uib-accordion-group is-open="memory.open" ng-init="memory.open=true">

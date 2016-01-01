@@ -1,5 +1,7 @@
+<!-- TODO containers shouldn't be nested -->
 <div class="container">
 
+    <!-- TODO containers shouldn't be nested -->
     <div class="container">
         <h2>CPU Sampling
             <small>
@@ -11,6 +13,7 @@
         <hr>
     </div>
 
+    <!-- TODO containers shouldn't be nested -->
     <div class="container">
         Refresh Rate (Seconds)
         <rzslider rz-slider-model="timeoutSlider.value"
@@ -29,6 +32,7 @@
         </uib-tab>
     </uib-tabset>
 
+    <!-- TODO containers shouldn't be nested -->
     <div class="container">
         <uib-accordion close-others="false">
             <uib-accordion-group is-open="overlay.open" ng-init="overlay.open=true">
@@ -40,7 +44,7 @@
                 <div class="chart-container-fluid">
                     <canvas class="chart chart-line"
                             chart-data="cpuDataSeries" chart-labels="labels" chart-series="series"
-                            chart-legend="true">
+                            chart-options="options" chart-legend="true">
                     </canvas>
                 </div>
             </uib-accordion-group>

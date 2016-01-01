@@ -1,4 +1,4 @@
-app.config(function ($routeProvider, $locationProvider, ChartJsProvider) {
+app.config(function ($routeProvider, $locationProvider) {
 
     $routeProvider
         .when('/', {
