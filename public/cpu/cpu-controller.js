@@ -2,6 +2,8 @@ app.controller('CpuCtrl', function ($scope, $timeout, CpuService, HostService) {
 
     var sampleHost;
 
+    var cpuTimer;
+
     HostService.retrieveHosts().success(function (data) {
         $scope.hosts = data;
         sampleHost = data[0];
@@ -40,11 +42,6 @@ app.controller('CpuCtrl', function ($scope, $timeout, CpuService, HostService) {
         }
     };
 
-    //$scope.options = {
-    //    pointDot: false,
-    //    datasetStrokeWidth: 0.5
-    //};
-
     var refreshCPUChartData = function () {
 
         CpuService.retrieveCpuMetrics(sampleHost, $scope.numberOfPointsSlider.value).success(function (data) {
@@ -67,14 +64,20 @@ app.controller('CpuCtrl', function ($scope, $timeout, CpuService, HostService) {
 
     var cpuMetricPoller = function () {
         refreshCPUChartData();
-        $timeout(cpuMetricPoller, ($scope.timeoutSlider.value * 1000));
+        cpuTimer = $timeout(cpuMetricPoller, ($scope.timeoutSlider.value * 1000));
     };
+
+    $scope.$on(
+        "$destroy",
+        function (event) {
+            $timeout.cancel(cpuTimer);
+        }
+    );
 
     // TODO Bug on window resize while panel closed
     // use chart redraw(). on window resize event
     // Resizes & redraws to fill its container element
     //  myLineChart.resize();
     // => returns 'this' for chainability
-
 
 });

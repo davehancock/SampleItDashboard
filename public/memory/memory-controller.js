@@ -2,6 +2,8 @@ app.controller('MemoryCtrl', function ($scope, $timeout, MemoryService, HostServ
 
     var sampleHost;
 
+    var memoryTimer;
+
     HostService.retrieveHosts().success(function (data) {
         $scope.hosts = data;
         sampleHost = data[0];
@@ -38,8 +40,15 @@ app.controller('MemoryCtrl', function ($scope, $timeout, MemoryService, HostServ
 
     var memoryMetricPoller = function () {
         refreshMemoryChartData();
-        $timeout(memoryMetricPoller, ($scope.timeoutSlider.value * 1000));
+        memoryTimer = $timeout(memoryMetricPoller, ($scope.timeoutSlider.value * 1000));
     };
+
+    $scope.$on(
+        "$destroy",
+        function (event) {
+            $timeout.cancel(memoryTimer);
+        }
+    );
 
 });
 

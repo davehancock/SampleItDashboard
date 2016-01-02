@@ -15,22 +15,26 @@
     <!-- TODO containers shouldn't be nested -->
     <div class="container">
 
+        <!-- TODO Make this into a directive or have as part of the outer page rather than the ng-vew -->
         <uib-tabset class="host-tabs">
-            <uib-tab ng-repeat="tab in hosts" heading="{{hosts[$index]}}" select="activeHost(tab)">
+            <uib-tab ng-repeat="machineName in machineNames" select="activeHost(machineName)">
+                <uib-tab-heading>
+                    <div>
+                        <span>{{machineNames[$index]}}</span>
+                        <i class="glyphicon glyphicon-edit" ng-click="editMachineTab(machineName, $index)"></i>
+                    </div>
+                </uib-tab-heading>
             </uib-tab>
         </uib-tabset>
 
         <!-- TODO containers shouldn't be nested -->
         <div class="container">
             <uib-accordion close-others="false">
-                <uib-accordion-group is-open="metadata.open" ng-init="metadata.open=true">
+                <uib-accordion-group is-open="true">
                     <uib-accordion-heading>
                         Metadata View
-                        <i class="pull-right glyphicon"
-                           ng-class="{'glyphicon-chevron-down': memory.open, 'glyphicon-chevron-right': !memory.open}"></i>
                     </uib-accordion-heading>
 
-                    <!-- TODO Make this generic? Ng-Repeat over hosts or list all based on tabs? -->
                     <table class="table">
                         <tr>
                             <th>Hostname</th>
