@@ -2,8 +2,10 @@ app.config(function ($routeProvider, $locationProvider) {
 
     $routeProvider
         .when('/', {
-            controller: 'HomeCtrl',
             templateUrl: './home/home.html'
+        })
+        .when('/lost', {
+            templateUrl: './lost/lost.html'
         })
         .when('/metadata', {
             controller: 'MetadataCtrl',
@@ -20,7 +22,8 @@ app.config(function ($routeProvider, $locationProvider) {
         .when('/sample', {
             controller: 'SampleCtrl',
             templateUrl: './sample/sample.html'
-        });
+        })
+        .otherwise('/lost');
 
     $locationProvider.html5Mode(true);
 
