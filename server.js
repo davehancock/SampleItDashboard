@@ -3,7 +3,7 @@ var favicon = require('serve-favicon');
 
 var app = express();
 
-app.use(favicon(__dirname + '/assets/favicon.png'));
+app.use(favicon(__dirname + '/assets/images/favicon.png'));
 
 app.use(express.static('assets'));
 

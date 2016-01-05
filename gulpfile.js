@@ -1,19 +1,19 @@
-var gulp = require('gulp');
-var gulpNgConfig = require('gulp-ng-config');
-var gnf = require('gulp-npm-files');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var ngAnnotate = require('gulp-ng-annotate');
-var sourcemaps = require('gulp-sourcemaps');
-var stylus = require('gulp-stylus');
-var nodemon = require('gulp-nodemon');
-
+const gulp = require('gulp');
+const gulpNgConfig = require('gulp-ng-config');
+const gnf = require('gulp-npm-files');
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
+const imagemin = require('gulp-imagemin');
+const ngAnnotate = require('gulp-ng-annotate');
+const sourcemaps = require('gulp-sourcemaps');
+const stylus = require('gulp-stylus');
+const nodemon = require('gulp-nodemon');
 
 gulp.task('default', ['prod']);
 
 gulp.task('prod', ['set-prod', 'build']);
 
-gulp.task('dev', ['set-dev', 'build', 'watch:js', 'watch:html', 'watch:css', 'dev:server']);
+gulp.task('dev', ['set-dev', 'build', 'watch:js', 'watch:html', 'watch:css', 'watch:images', 'dev:server']);
 
 gulp.task('build', ['libs', 'images', 'js', 'html', 'css']);
 
@@ -66,9 +66,11 @@ gulp.task('css', function () {
 
 gulp.task('images', function () {
     gulp.src(['public/images/*.*'])
-        .pipe(gulp.dest('assets'))
+        .pipe(imagemin({
+            progressive: true
+        }))
+        .pipe(gulp.dest('assets/images'))
 });
-
 
 // Dev Tasks
 
@@ -90,4 +92,8 @@ gulp.task('watch:html', ['html'], function () {
 
 gulp.task('watch:css', ['css'], function () {
     gulp.watch('public/**/*.styl', ['css']);
+});
+
+gulp.task('watch:images', ['images'], function () {
+    gulp.watch('public/images/*.*', ['images']);
 });

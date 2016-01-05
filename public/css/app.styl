@@ -53,7 +53,7 @@ html
 .jumbotron
   color: #fff
   font-family: Montserrat, sans-serif;
-  background-image: url("internals-md.jpeg")
+  background: url("images/internals.jpeg")
   background-size: cover
   min-height: 600px
 
@@ -63,14 +63,14 @@ html
   margin-left: auto
 
 .jumbotron-lost
-  background-image: url("lost.jpeg")
+  background: url("images/lost.jpeg")
+  background-size: cover
 
 .lost-quote
   margin-top: 20px
   padding-top: 20px
   font-style: italic
   font-weight bold
-
 
 .jumbotron-header
   background: rgba(31, 39, 41, 0.48)
@@ -148,3 +148,7 @@ body
 // Override for chrome focus blue halo on AngularJS form components
 :focus
   outline: none !important
+
+// Angular ng-cloak css rules must be loaded first, hence are included here.
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak
+  display: none !important;
